@@ -6,6 +6,8 @@ const posts = (await getCollection('blog')).sort(
     (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
 );
 
+const {showTags} = Astro.props
+
 const tags = new Set();
 posts.forEach(p => p.data.tags.forEach(t => tags.add(t)));
 
@@ -31,29 +33,33 @@ const currentPosts = currentTag ? posts.filter(p => p.data.tags.includes(current
 
 </script>
 
-<div class="break-all pt-10 blog-list">
-    {
-        [...tags].map(tag => (
-                <span val={tag}
-                      class:list={["cursor-default blog-tag inline-block rounded mx-1 text-lg rounded py-[0.2rem] px-[0.3rem]",
-                          tag === currentTag ? "bg-just-light/20 text-just-dark" : ""
-                      ]}>
+{
+    showTags ?
+    <div class="break-all pt-10 blog-list">
+        {
+            [...tags].map(tag => (
+                    <span val={tag}
+                          class:list={["cursor-default blog-tag inline-block rounded mx-1 text-lg rounded py-[0.2rem] px-[0.3rem]",
+                              tag === currentTag ? "bg-just-light/20 text-just-dark" : ""
+                          ]}>
                     {tag}
                 </span>
-        ))
+            ))
+        }
+    </div>
+    <div class="py-10">
+        <hr>
+    </div>
+        :
+    <></>
     }
-</div>
 
 
-<div class="py-10">
-    <hr>
-</div>
-
-<div class="space-y-7 mb-10">
+<div class="mb-10 prose">
     <div class="space-y-10">
         {currentPosts.map(p =>
                 <div>
-                    <a href={`/blog/${p.slug}/`} class="flex w-full flex-col my-4 gap-4 overflow-clip">
+                    <a href={`/blog/${p.slug}/`} class="flex w-full flex-col my-2 gap-1 overflow-clip">
                         {
                             p.data.cover && p.data.cover.image ?
                                     <Image width="auto" format="png" height="auto" loading="lazy" quality="80"
@@ -62,18 +68,18 @@ const currentPosts = currentTag ? posts.filter(p => p.data.tags.includes(current
                                     <></>
                         }
 
-                        <p class="mx-4 text-xl opacity-90">
+                        <p class="mx-2 text-xl opacity-90">
                             {p.data.title}
                         </p>
 
                         {p.data.summary ?
-                                <p class="line-clamp-3 md:line-clamp-4 mx-4 text-xl opacity-60">
+                                <p class="line-clamp-3 md:line-clamp-4 mx-2 text-xl opacity-60">
                                     {p.data.summary}
                                 </p> :
                                 <></>
                         }
                         <p class="mx-4 mb-4 text-sm opacity-50">
-                            { formatDate(p.data.date.toString()) }
+                            {formatDate(p.data.date.toString())}
 
                             {
                                 p.data.tags.map(t => (
@@ -86,5 +92,5 @@ const currentPosts = currentTag ? posts.filter(p => p.data.tags.includes(current
 
                     </a>
                 </div>)}
-    </div>
-</div>
+            </div>
+            </div>

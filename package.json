@@ -19,5 +19,9 @@
     "astro-icon": "^0.8.1",
     "unocss": "^0.54.1",
     "vue": "^3.2.30"
+  },
+  "devDependencies": {
+    "@unocss/preset-typography": "^0.54.1",
+    "@unocss/transformer-directives": "^0.54.1"
   }
 }

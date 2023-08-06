@@ -1,12 +1,40 @@
 // uno.config.ts
-import {defineConfig} from 'unocss'
+import {defineConfig, presetTypography, presetUno, transformerDirectives} from 'unocss'
 
 export default defineConfig({
+    content:{
+        pipeline:{
+            include:[
+                "./src/**/*.{vue,ts,js,jsx,tsx,css,astro}"
+            ]
+        }
+    },
+    transformers: [
+        transformerDirectives({
+        }),
+    ],
     // ...UnoCSS options
     shortcuts: {
         'm-center': 'flex justify-center items-center',
-        'm-con': 'max-w-[90%] sm:w-[560px] lg:w-[850px]'
+        'm-con': 'max-w-[90%] sm:w-[560px] lg:w-[850px]',
+        'my-prose': "prose",
     },
+    presets: [
+        presetUno(),
+        presetTypography(
+            {
+                cssExtend: {
+                    'a':{
+                        underline: 'none',
+                        color:'text-just'
+                    },
+                    'a:hover':{
+                        color:'text-just-dark'
+                    }
+                }
+            }
+        )
+    ],
     theme: {
         colors: {
             'aura-just': "#61ffca",

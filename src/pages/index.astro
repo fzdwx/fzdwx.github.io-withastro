@@ -2,30 +2,34 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
 import BlogList from "../components/blog/BlogList.astro";
+
+import {Icon} from 'astro-icon';
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title="Home" description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title="Home" />
-		<main class="container lg:px-0 md:pb-20 md:px-8 sm:pb-16 sm:px-6 mx-auto px-7 py-10 pb-10 pt-24 l">
-			<div class="m-center pt-10 pb-10">
-				<div class="m-con text-xl px-6">
-					Hello, welcome to 123123z!
-				</div>
-			</div>
+<head>
+    <BaseHead title="Home" description={SITE_DESCRIPTION}/>
+</head>
+<body>
+<Header title="Home"/>
+<main class="lg:px-0 md:pb-20 md:px-8 sm:pb-16 sm:px-6 mx-auto px-7 py-10 pb-10 pt-24">
+    <div class="pt-10 pb-10 text-xl px-6">
+        Hello, welcome to my website!
+        <br/>
+        <br/>
+        Find me on <a href="https://github.com/fzdwx">
+        <Icon class="inline-block" width="24" name="mdi:github"/>
+    </a>
+    </div>
 
-			<div class="m-center">
-				<div class="m-con">
-					<BlogList/>
-				</div>
-			</div>
-		</main>
-		<Footer />
-	</body>
+    <article>
+        <BlogList showTags={false}/>
+    </article>
+
+</main>
+<Footer/>
+</body>
 </html>
