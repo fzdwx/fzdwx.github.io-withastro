@@ -12,6 +12,7 @@ const tags = new Set();
 posts.forEach(p => p.data.tags.forEach(t => tags.add(t)));
 
 const currentTag = Astro.url.searchParams.get('tag');
+console.log("tag:::",currentTag)
 const currentPosts = currentTag ? posts.filter(p => p.data.tags.includes(currentTag)) : posts;
 ---
 

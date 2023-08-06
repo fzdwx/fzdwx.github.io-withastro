@@ -9,7 +9,7 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://fzdwx.vercel.app',
-  output: 'hybrid',
+  output: 'server',
   integrations: [mdx(), sitemap(), UnoCSS({
     injectReset: true
   }), image()],
