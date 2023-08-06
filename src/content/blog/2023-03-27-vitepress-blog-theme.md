@@ -1,7 +1,7 @@
 ---
 title: "一个 VitePress 博客主题"
 date: "2023-03-27T19:53:12+08:00"
-layout: "blog"
+
 tags: [project, front]
 ---
 

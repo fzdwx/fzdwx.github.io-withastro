@@ -1,7 +1,7 @@
 ---
 title: "安装双系统"
 date: "2023-04-26T20:46:49+08:00"
-layout: "blog"
+
 tags: [linux]
 ---
 

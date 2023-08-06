@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import {SITE_TITLE, SITE_DESCRIPTION} from '../../consts';
 import {getCollection} from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
+import BlogList from "../../components/blog/BlogList.astro";
 
 const posts = (await getCollection('blog')).sort(
     (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
@@ -104,22 +105,24 @@ const posts = (await getCollection('blog')).sort(
 <body>
 <Header/>
 <main>
-    <section>
-        <ul>
-            {
-                posts.map((post) => (
-                        <li>
-                            <a href={`/blog/${post.slug}/`}>
-                                <h4 class="title">{post.data.title}</h4>
-                                <p class="date">
-                                    <FormattedDate date={post.data.date}/>
-                                </p>
-                            </a>
-                        </li>
-                ))
-            }
-        </ul>
-    </section>
+    <!--<section>-->
+    <!--    <ul>-->
+    <!--        {-->
+    <!--            posts.map((post) => (-->
+    <!--                    <li>-->
+    <!--                        <a href={`/blog/${post.slug}/`}>-->
+    <!--                            <h4 class="title">{post.data.title}</h4>-->
+    <!--                            <p class="date">-->
+    <!--                                <FormattedDate date={post.data.date}/>-->
+    <!--                            </p>-->
+    <!--                        </a>-->
+    <!--                    </li>-->
+    <!--            ))-->
+    <!--        }-->
+    <!--    </ul>-->
+    <!--</section>-->
+
+    <BlogList/>
 </main>
 <Footer/>
 </body>

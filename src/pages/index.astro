@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BlogList from "../components/blog/BlogList.astro";
 ---
 
 <!DOCTYPE html>
@@ -15,7 +16,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<main class="container lg:px-0 md:pb-20 md:px-8 sm:pb-16 sm:px-6 mx-auto px-7 py-10 pb-10 pt-24 l">
 			<div class="m-center pt-10 pb-10">
 				<div class="m-con text-xl px-6">
-					Hello, welcome to {SITE_TITLE}!
+					Hello, welcome to 123123z!
+				</div>
+			</div>
+
+			<div class="m-center">
+				<div class="m-con">
+					<BlogList/>
 				</div>
 			</div>
 		</main>

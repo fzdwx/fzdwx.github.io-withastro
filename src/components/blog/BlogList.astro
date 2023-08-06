@@ -1,6 +1,90 @@
 ---
 import {getCollection} from "astro:content";
+import {Image} from '@astrojs/image/components';
+import {formatDate} from "../../utils";
 const posts = (await getCollection('blog')).sort(
     (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
 );
+
+const tags = new Set();
+posts.forEach(p => p.data.tags.forEach(t => tags.add(t)));
+
+const currentTag = Astro.url.searchParams.get('tag');
+const currentPosts = currentTag ? posts.filter(p => p.data.tags.includes(currentTag)) : posts;
 ---
+
+<script>
+    const tagButtons = document.querySelectorAll('span.blog-tag');
+    tagButtons.forEach(b => {
+        b.addEventListener('click', () => {
+            const tag = b.getAttribute('val');
+            const url = new URL(window.location.href);
+            const oldTag = url.searchParams.get('tag');
+            if (oldTag && oldTag === tag) {
+                window.location.href = '/blog'
+                return
+            }
+            window.location.href = `/blog?tag=${tag}`
+        })
+    })
+
+
+</script>
+
+<div class="break-all pt-10 blog-list">
+    {
+        [...tags].map(tag => (
+                <span val={tag}
+                      class:list={["cursor-default blog-tag inline-block rounded mx-1 text-lg rounded py-[0.2rem] px-[0.3rem]",
+                          tag === currentTag ? "bg-just-light/20 text-just-dark" : ""
+                      ]}>
+                    {tag}
+                </span>
+        ))
+    }
+</div>
+
+
+<div class="py-10">
+    <hr>
+</div>
+
+<div class="space-y-7 mb-10">
+    <div class="space-y-10">
+        {currentPosts.map(p =>
+                <div>
+                    <a href={`/blog/${p.slug}/`} class="flex w-full flex-col my-4 gap-4 overflow-clip">
+                        {
+                            p.data.cover && p.data.cover.image ?
+                                    <Image width="auto" format="png" height="auto" loading="lazy" quality="80"
+                                           src={p.data.cover.image}
+                                           alt="image"/> :
+                                    <></>
+                        }
+
+                        <p class="mx-4 text-xl opacity-90">
+                            {p.data.title}
+                        </p>
+
+                        {p.data.summary ?
+                                <p class="line-clamp-3 md:line-clamp-4 mx-4 text-xl opacity-60">
+                                    {p.data.summary}
+                                </p> :
+                                <></>
+                        }
+                        <p class="mx-4 mb-4 text-sm opacity-50">
+                            { formatDate(p.data.date.toString()) }
+
+                            {
+                                p.data.tags.map(t => (
+                                        <span class="mx-1 rounded py-[0.2rem] px-[0.3rem] bg-just-light/20 font-bold text-just-dark">
+                                            {t}
+                                        </span>
+                                ))
+                            }
+                        </p>
+
+                    </a>
+                </div>)}
+    </div>
+</div>

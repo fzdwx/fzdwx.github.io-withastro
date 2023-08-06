@@ -1,7 +1,7 @@
 ---
 title: "如何在 go-zero 中实现 curd 的自动化生成"
 date: "2023-04-18T14:29:40+08:00"
-layout: "blog"
+
 tags: [go]
 ---
 

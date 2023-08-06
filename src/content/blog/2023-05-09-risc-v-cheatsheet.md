@@ -1,7 +1,7 @@
 ---
 title: "risc-v 速查表"
 date: "2023-05-09T14:43:57+08:00"
-layout: "blog"
+
 hidden: true
 tags: [riscv]
 ---
