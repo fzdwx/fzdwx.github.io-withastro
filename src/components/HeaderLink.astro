@@ -16,13 +16,3 @@ if (Astro.slots.has('default')) {
 
 <a href={href} class:list={[className, { active: isActive }]} {...props}  set:html={html} >
 </a>
-<style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-	}
-	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
-	}
-</style>

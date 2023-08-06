@@ -1,10 +1,14 @@
 // uno.config.ts
-import { defineConfig } from 'unocss'
+import {defineConfig} from 'unocss'
 
 export default defineConfig({
     // ...UnoCSS options
-    theme:{
-        colors:{
+    shortcuts: {
+        'm-center': 'flex justify-center items-center',
+        'm-con': 'max-w-[90%] sm:w-[560px] lg:w-[850px]'
+    },
+    theme: {
+        colors: {
             'aura-just': "#61ffca",
             'just': "#10b981",
             'just-light': "#34d399",

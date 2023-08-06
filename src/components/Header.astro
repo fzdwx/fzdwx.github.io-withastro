@@ -36,8 +36,7 @@ import {Icon} from 'astro-icon'
                                                 {
                                                     link.icon ?
                                                             <Icon
-                                                                    v-if="link.icon"
-                                                                    name="link.icon"
+                                                                    name={link.icon}
                                                                     class:list={
                                                                         ["hidden sm:inline-block md:mr-2 mb-1 transition opacity-75 group-hover:opacity-100",
                                                                             isActive ? 'opacity-100' : 'opacity-75'
